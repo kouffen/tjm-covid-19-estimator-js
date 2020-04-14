@@ -66,12 +66,12 @@ const covid19ImpactEstimator = (data) => {
   );
 
   // estimation of what covid-19 can make economy lost dayly
-  impact.dollarsInflight = Math.ceil((impact.infectionsByRequestedTime
+  impact.dollarsInflight = Math.trunc((impact.infectionsByRequestedTime
                                        * region.avgDailyIncomeInUSD
                                        * region.avgDailyIncomePopulation)
                                        / getNumberOfDays(timeToElapse));
 
-  severeImpact.dollarsInflight = Math.ceil((severeImpact.infectionsByRequestedTime
+  severeImpact.dollarsInflight = Math.trunc((severeImpact.infectionsByRequestedTime
                 * region.avgDailyIncomeInUSD
                 * region.avgDailyIncomePopulation)
                 / getNumberOfDays(timeToElapse));
