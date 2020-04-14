@@ -9,7 +9,7 @@ const getNumberOfDays = (periodType, timeToElapse) => {
     return timeToElapse;
   } return timeToElapse;
 };
-const getPowerNumber = (periodType, timeToElapse) => Math.ceil(getNumberOfDays(periodType,
+const getPowerNumber = (periodType, timeToElapse) => Math.trunc(getNumberOfDays(periodType,
   timeToElapse) / 3);
 
 
