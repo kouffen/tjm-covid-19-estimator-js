@@ -1,4 +1,4 @@
-const getHospitalsBedAvailable = (totalHospitalBeds) => Math.trunc(totalHospitalBeds * 0.35);
+const getHospitalsBedAvailable = (totalHospitalBeds) => Math.round(totalHospitalBeds * 0.35);
 
 const getNumberOfDays = (periodType, timeToElapse) => {
   if (periodType === 'weeks') {
@@ -6,11 +6,11 @@ const getNumberOfDays = (periodType, timeToElapse) => {
   } if (periodType === 'months') {
     return timeToElapse * 30;
   } if (periodType === 'days') {
-    return timeToElapse;
+    return timeToElapse;  
   }
   return timeToElapse;
 };
-const getPowerNumber = (periodType, timeToElapse) => Math.trunc(getNumberOfDays(periodType,
+const getPowerNumber = (periodType, timeToElapse) => Math.round(getNumberOfDays(periodType,
   timeToElapse) / 3);
 
 
@@ -42,9 +42,9 @@ const covid19ImpactEstimator = (data) => {
                                            * 2 ** getPowerNumber(periodType, timeToElapse);
 
   // people who need hospitalization to recover their health
-  impact.severeCasesByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.15);
+  impact.severeCasesByRequestedTime = Math.round(impact.infectionsByRequestedTime * 0.15);
 
-  severeImpact.severeCasesByRequestedTime = Math.trunc(severeImpact.infectionsByRequestedTime
+  severeImpact.severeCasesByRequestedTime = Math.round(severeImpact.infectionsByRequestedTime
                                                         * 0.15);
 
   // beds consumption
@@ -60,19 +60,19 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
 
   // number of positive cases that require ventilators
-  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.02);
+  impact.casesForVentilatorsByRequestedTime = Math.round(impact.infectionsByRequestedTime * 0.02);
 
-  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(
+  severeImpact.casesForVentilatorsByRequestedTime = Math.round(
     severeImpact.infectionsByRequestedTime * 0.02
   );
 
   // estimation of what covid-19 can make economy lost dayly
-  impact.dollarsInflight = Math.trunc((impact.infectionsByRequestedTime
+  impact.dollarsInflight = Math.round((impact.infectionsByRequestedTime
                                        * region.avgDailyIncomeInUSD
                                        * region.avgDailyIncomePopulation)
                                        / getNumberOfDays(timeToElapse));
 
-  severeImpact.dollarsInflight = Math.trunc((severeImpact.infectionsByRequestedTime
+  severeImpact.dollarsInflight = Math.round((severeImpact.infectionsByRequestedTime
                 * region.avgDailyIncomeInUSD
                 * region.avgDailyIncomePopulation)
                 / getNumberOfDays(timeToElapse));
