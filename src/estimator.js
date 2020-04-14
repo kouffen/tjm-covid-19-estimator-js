@@ -6,7 +6,7 @@ const getNumberOfDays = (periodType, timeToElapse) => {
   } if (periodType === 'months') {
     return timeToElapse * 30;
   } if (periodType === 'days') {
-    return timeToElapse;  
+    return timeToElapse;
   }
   return timeToElapse;
 };
