@@ -1,4 +1,4 @@
-const getHospitalsBedAvailable = (totalHospitalBeds) =>Math.trunc(totalHospitalBeds * 0.35);
+const getHospitalsBedAvailable = (totalHospitalBeds) => Math.trunc(totalHospitalBeds * 0.35);
 
 const getNumberOfDays = (periodType, timeToElapse) => {
   if (periodType === 'weeks') {
