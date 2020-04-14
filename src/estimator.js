@@ -7,8 +7,7 @@ const getNumberOfDays = (periodType, timeToElapse) => {
     return timeToElapse * 30;
   } if (periodType === 'days') {
     return timeToElapse;
-  }
-  return timeToElapse;
+  } return timeToElapse;
 };
 const getPowerNumber = (periodType, timeToElapse) => Math.round(getNumberOfDays(periodType,
   timeToElapse) / 3);
