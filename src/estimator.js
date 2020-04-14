@@ -17,22 +17,17 @@ const getPowerNumber = (periodType, timeToElapse) => Math.trunc(getNumberOfDays(
 const covid19ImpactEstimator = (data) => {
   // recuperation des entrance data
   // declaration of input variables
-  const [inputs] = { data };
+
   const {
     region, periodType, timeToElapse, reportedCases,
     totalHospitalBeds
-  } = inputs;
+  } = data;
 
   // data output variables elements declariations
   const impact = {};
 
   const severeImpact = {};
 
-  const output = {
-    inputs,
-    impact,
-    severeImpact
-  };
 
   // estimation of currently infected people
   impact.currentlyInfected = reportedCases * 10;
@@ -82,8 +77,11 @@ const covid19ImpactEstimator = (data) => {
                 * region.avgDailyIncomePopulation)
                 / getNumberOfDays(timeToElapse));
 
-
-  return output;
+  return {
+    data,
+    impact,
+    severeImpact
+  };
 };
 
 
