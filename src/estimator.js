@@ -65,7 +65,7 @@ const covid19ImpactEstimator = (data) => {
     severeImpact.infectionsByRequestedTime * 0.02
   );
 
-  // estimation of what covid-19 can make economy lost dayly
+  // estimation of what covid-19 can make economy lost per day
   impact.dollarsInflight = Math.trunc((impact.infectionsByRequestedTime
                                        * region.avgDailyIncomeInUSD
                                        * region.avgDailyIncomePopulation)
