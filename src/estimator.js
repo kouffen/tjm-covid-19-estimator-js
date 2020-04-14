@@ -1,20 +1,17 @@
 const getHospitalsBedAvailable = (totalHospitalBeds) => totalHospitalBeds * 0.15;
 
-const getNumberOfDays = (timeToElapse) => {
-
-};
-const getPowerNumber = (periodType, timeToElapse) => {
-  let numBerOfDays = 0;
-  if (periodType === 'days') {
-    numBerOfDays = timeToElapse;
-  } else if (periodType === 'weeks') {
-    numBerOfDays = timeToElapse * 7;
-  } else if (periodType === 'months') {
-    numBerOfDays = timeToElapse * 30;
+const getNumberOfDays = (periodType, timeToElapse) => {
+  if (periodType === 'weeks') {
+    return timeToElapse * 7;
+  } if (periodType === 'months') {
+    return timeToElapse * 30;
+  } if (periodType === 'days') {
+    return timeToElapse;
   }
-
-  return Math.trunc(numBerOfDays / 3);
+  return timeToElapse;
 };
+const getPowerNumber = (periodType, timeToElapse) => Math.trunc(getNumberOfDays(periodType,
+  timeToElapse) / 3);
 
 
 const covid19ImpactEstimator = (data) => {
@@ -22,7 +19,7 @@ const covid19ImpactEstimator = (data) => {
   // declaration of input variables
   const [inputs] = { data };
   const {
-    region, periodType, timeToElapse, reportedCases, population,
+    region, periodType, timeToElapse, reportedCases,
     totalHospitalBeds
   } = inputs;
 
