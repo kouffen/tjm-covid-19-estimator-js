@@ -44,21 +44,20 @@ const covid19ImpactEstimator = (data) => {
   impact.severeCasesByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.15);
 
   severeImpact.severeCasesByRequestedTime = Math.ceil(severeImpact.infectionsByRequestedTime
-                                                         * 0.15);
+                                                        * 0.15);
 
   // beds consumption
   impact.hospitalBedsByRequestedTime = getHospitalsBedAvailable(totalHospitalBeds)
-                                        - impact.severeCasesByRequestedTime;
+                                       - impact.severeCasesByRequestedTime;
 
   severeImpact.hospitalBedsByRequestedTime = getHospitalsBedAvailable(totalHospitalBeds)
-                                              - severeImpact.severeCasesByRequestedTime;
+                                             - severeImpact.severeCasesByRequestedTime;
 
   // number of positive cases that require ICU CARE
   impact.casesForICUByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.05);
 
-  severeImpact.casesForICUByRequestedTime = Math.ceil(
-    severeImpact.infectionsByRequestedTime * 0.05
-  );
+  severeImpact.casesForICUByRequestedTime = Math.ceil(severeImpact.infectionsByRequestedTime
+    * 0.05);
 
   // number of positive cases that require ventilators
   impact.casesForVentilatorsByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.02);
@@ -71,14 +70,12 @@ const covid19ImpactEstimator = (data) => {
   impact.dollarsInflight = Math.floor((impact.infectionsByRequestedTime
                                        * region.avgDailyIncomeInUSD
                                        * region.avgDailyIncomePopulation)
-                                       / getNumberOfDays(periodType, timeToElapse));
-
+                                       / getNumberOfDays(timeToElapse));
 
   severeImpact.dollarsInflight = Math.floor((severeImpact.infectionsByRequestedTime
                 * region.avgDailyIncomeInUSD
                 * region.avgDailyIncomePopulation)
-                / getNumberOfDays(periodType, timeToElapse));
-
+                / getNumberOfDays(timeToElapse));
 
   return {
     data,
@@ -87,5 +84,5 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-// to export our function
+
 export default covid19ImpactEstimator;
