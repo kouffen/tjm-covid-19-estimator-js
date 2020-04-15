@@ -60,9 +60,9 @@ const covid19ImpactEstimator = (data) => {
     * 0.05);
 
   // number of positive cases that require ventilators
-  impact.casesForVentilatorsByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.02);
+  impact.casesForVentilatorsByRequestedTime = Math.floor(impact.infectionsByRequestedTime * 0.02);
 
-  severeImpact.casesForVentilatorsByRequestedTime = Math.ceil(
+  severeImpact.casesForVentilatorsByRequestedTime = Math.floor(
     severeImpact.infectionsByRequestedTime * 0.02
   );
 
