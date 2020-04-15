@@ -44,19 +44,21 @@ const covid19ImpactEstimator = (data) => {
   impact.severeCasesByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.15);
 
   severeImpact.severeCasesByRequestedTime = Math.ceil(severeImpact.infectionsByRequestedTime
-                                                        * 0.15);
+                                                         * 0.15);
 
   // beds consumption
   impact.hospitalBedsByRequestedTime = getHospitalsBedAvailable(totalHospitalBeds)
-                                       - impact.severeCasesByRequestedTime;
+                                        - impact.severeCasesByRequestedTime;
 
   severeImpact.hospitalBedsByRequestedTime = getHospitalsBedAvailable(totalHospitalBeds)
-                                             - severeImpact.severeCasesByRequestedTime;
+                                              - severeImpact.severeCasesByRequestedTime;
 
   // number of positive cases that require ICU CARE
-  impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
+  impact.casesForICUByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.05);
 
-  severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
+  severeImpact.casesForICUByRequestedTime = Math.ceil(
+    severeImpact.infectionsByRequestedTime * 0.05
+  );
 
   // number of positive cases that require ventilators
   impact.casesForVentilatorsByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.02);
@@ -66,13 +68,13 @@ const covid19ImpactEstimator = (data) => {
   );
 
   // estimation of what covid-19 can make economy lost per day
-  impact.dollarsInflight = Math.trunc((impact.infectionsByRequestedTime
+  impact.dollarsInflight = Math.floor((impact.infectionsByRequestedTime
                                        * region.avgDailyIncomeInUSD
                                        * region.avgDailyIncomePopulation)
                                        / getNumberOfDays(periodType, timeToElapse));
 
 
-  severeImpact.dollarsInflight = Math.trunc((severeImpact.infectionsByRequestedTime
+  severeImpact.dollarsInflight = Math.floor((severeImpact.infectionsByRequestedTime
                 * region.avgDailyIncomeInUSD
                 * region.avgDailyIncomePopulation)
                 / getNumberOfDays(periodType, timeToElapse));
